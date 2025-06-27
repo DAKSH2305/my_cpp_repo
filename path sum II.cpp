@@ -5,7 +5,8 @@ Each path should be returned as a list of the node values, not node references.
 A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children.
 */
 class Solution {
-     void pathsum(TreeNode*root,int s,int k,vector<int> v,vector<vector<int>>& ans){
+     void pathsum(TreeNode*root,int s,int k,vector<int> &v,vector<vector<int>>& ans){
+        // pass by reference for prevention of making copies of v and ans.
         if(root==NULL){
             return ;
         }
@@ -14,13 +15,15 @@ class Solution {
         if(root->left==NULL&&root->right==NULL){
             if(s==k){
                 ans.push_back(v);
-                return;
+                // no need of early termination 
+                // let it explore completely 
                 
             }
+        
         }
         pathsum(root->left,s,k,v,ans);
         pathsum(root->right,s,k,v,ans);
-        v.pop_back();
+        v.pop_back(); // backtracking
 
     }
 public:
