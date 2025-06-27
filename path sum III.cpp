@@ -5,7 +5,7 @@ Given the root of a binary tree and an integer targetSum, return the number of p
 The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).
 
 */
-
+// UNOPTIMISED CODE 
 class Solution {
     void getting_paths(TreeNode*root, int t , int & cnt , vector<int> path){
         if(root==NULL){
