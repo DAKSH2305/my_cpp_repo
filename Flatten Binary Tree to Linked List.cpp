@@ -7,7 +7,7 @@ The "linked list" should use the same TreeNode class where the right child point
 The "linked list" should be in the same order as a pre-order traversal of the binary tree.
 */
 
-
+// LESS OPTIMISED 
 class Solution {
     void preorder(TreeNode*root,vector<TreeNode*> &v){
         if(root==NULL){
@@ -34,6 +34,43 @@ public:
         }
         sol.back()->left=NULL;
         sol.back()->right=NULL;
+
+
+
+// FULL OPTIMISED O(N) TC AND SC - O(1)
+// MORRIS TRAVERSAL . 
+
+class Solution {
+    void morrisTraversal(TreeNode*root){
+        TreeNode*curr =root;
+        TreeNode*prev;
+        while(curr!=NULL){
+            if (curr->left){
+                prev= curr->left;
+                while(prev->right){
+                    prev=prev->right;
+                    
+                }
+                prev->right=curr->right;
+                curr->right=curr->left;
+                
+            }
+            curr=curr->right;
+        }
+        curr=root;
+        while(curr!=NULL){
+            curr->left=NULL;
+            curr=curr->right;
+        }
+    }
+   
+public:
+    void flatten(TreeNode* root) {
+   
+        morrisTraversal(root);
+
+    }
+};
 
     }
 };
